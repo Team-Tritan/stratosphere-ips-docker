@@ -1,0 +1,16 @@
+services:
+  slips:
+    image: stratosphereips/slips:latest
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./output:/StratosphereLinuxIPS/output
+      - ./dataset:/StratosphereLinuxIPS/dataset
+    command: /StratosphereLinuxIPS/slips.py -i ens18 -i ens19 -i ens20 -i ens21 -i ens22 -i ens23 -i enp2s1 -i enp2s1 -w
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7'
+          memory: 8G
+          memory_swap: 8G
